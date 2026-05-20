@@ -29,11 +29,14 @@ Repeats these functions until the tasksa are complete
 ### Function 1 [get_files_from_wd]
 The main use of this function is to check what files are present in the directory 
 ### Function 2 [get_contents]
-
+It reads the contents of the file
 ### Function 3 [write_file]
-### Function 4 
+### Function 4 [write_python]
 #### Security Risks
 Now, it's worth pausing to point out the inherent security risks here. We have a few things going for us:
 We'll only allow the LLM to run code in a specific directory (the working_directory).
 We'll use a 30-second timeout to prevent it from running indefinitely.
-But aside from that... yes, the LLM can run arbitrary code that we place (or it places) in the working directory... so be careful. As long as you use this AI agent only for the simple tasks we're doing in this course, you should be fine. 
+But aside from that... yes, the LLM can run arbitrary code that we place (or it places) in the working directory... so be careful. As long as you use this AI agent only for the simple tasks we're doing in this course, you should be fine.
+## Tools  agents,LLMs
+We need too tell the ai agent that what  are the tools and decribe to it on how to use them. We are giving the llma structured way to respond. We are making the LLM the decision making engine
+ 

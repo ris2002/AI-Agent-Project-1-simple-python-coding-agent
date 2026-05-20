@@ -1,6 +1,6 @@
 import os
 import subprocess
-def write_python(working_directory:str,file_path:str):
+def run_python(working_directory:str,file_path:str,args=[]):
     abs_working_dir=os.path.abspath(working_directory) 
     join=os.path.join(working_directory,file_path)
     abs_file_path=os.path.abspath(join)
@@ -12,8 +12,27 @@ def write_python(working_directory:str,file_path:str):
     if not file_path.endswith(".py"):
         return f'Error: File not a python file: "{file_path}"'
     try:
-        output=subprocess.run(["python3",file_path],timeout=30,capture_output=True,cwd=abs_working_dir)
-        return output
+        final_args = ["python3", abs_file_path]
+        final_args.extend(args)
+        output = subprocess.run(
+            final_args, 
+            timeout=30, 
+            capture_output=True, 
+            text=True, 
+            cwd=abs_working_dir)
+        final_string= f"""STDOUT:{output.stdout}
+                   STDERR:{output.stderr}  """
+
+        if output.stdout=="" and output.stderr=="":
+            final_string="No Code produced"
+        if output.returncode !=0:
+            final_string+=f"process exited with code {output.returncode}"
+
+        return final_string
+        
+
+
+
 
 
 
